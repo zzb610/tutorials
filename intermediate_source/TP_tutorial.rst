@@ -336,7 +336,7 @@ This 2-D parallelism pattern can be easily expressed via a 2-D DeviceMesh, and w
     from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 
     # i.e. 2-D mesh is [dp, tp], training on 64 GPUs that performs 8 way DP and 8 way TP
-    mesh_2d = init_device_mesh("cuda", (8, 8))
+    mesh_2d = init_device_mesh("cuda", (8, 8), mesh_dim_names=["dp", "tp"])
     tp_mesh = mesh_2d["tp"] # a submesh that connects intra-host devices
     dp_mesh = mesh_2d["dp"] # a submesh that connects inter-host devices
 
